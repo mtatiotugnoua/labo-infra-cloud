@@ -7,7 +7,7 @@ variable "environment" {
 variable "instance_type" {
   description = "Type d'instance pour l'environnement de test"
   type        = string
-  default     = "t3.large"
+  default     = "t3.medium"
 }
 
 variable "instance_count" {
