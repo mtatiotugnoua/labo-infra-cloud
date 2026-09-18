@@ -1,0 +1,26 @@
+name: Validation Terraform
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Installation de Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.7.0
+
+      - name: terraform fmt
+        run: terraform fmt -check -recursive
+        continue-on-error: true
+
+      - name: Vérification des fichiers
+        run: |
+          echo "Fichiers présents :"
+          find env -name "*.tf"
